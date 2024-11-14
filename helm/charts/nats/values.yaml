@@ -21,11 +21,11 @@ global:
 # Common options
 ################################################################################
 # override name of the chart
-nameOverride:
+nameOverride: 
 # override full name of the chart+release
-fullnameOverride:
+fullnameOverride: greymatter-nats
 # override the namespace that resources are installed into
-namespaceOverride:
+namespaceOverride: greymatter
 
 # reference a common CA Certificate or Bundle in all nats config `tls` blocks and nats-box contexts
 # note: `tls.verify` still must be set in the appropriate nats config `tls` blocks to require mTLS
@@ -49,8 +49,8 @@ tlsCA:
 ############################################################
 config:
   cluster:
-    enabled: false
-    port: 6222
+    enabled: true
+    port: 4242
     # must be 2 or higher when jetstream is enabled
     replicas: 3
 
@@ -61,7 +61,7 @@ config:
       user:
       password:
       # set to true to use FQDN in route URLs
-      useFQDN: false
+      useFQDN: true
       k8sClusterDomain: cluster.local
 
     tls:
@@ -82,7 +82,7 @@ config:
     patch: []
 
   jetstream:
-    enabled: false
+    enabled: true
 
     fileStore:
       enabled: true
@@ -104,7 +104,7 @@ config:
         name:
 
       # defaults to the PVC size
-      maxSize:
+      maxSize: 30Gi
 
     memoryStore:
       enabled: false
@@ -518,7 +518,7 @@ serviceAccount:
 # NATS Box Deployment and associated resources
 ############################################################
 natsBox:
-  enabled: true
+  enabled: false
 
   ############################################################
   # NATS contexts
